@@ -40,6 +40,15 @@ const url = 'https://sandbox.ipaymu.com/api/v2/payment';
 //     response.status(200).send(res);
 // });
 
+app.get('/', (request, response) => {
+    const res = {
+        status: 200,
+        message: 'Success'
+    };
+
+    response.status(200).send(res);
+});
+
 app.post('/api/ipaymu/checkout', upload.single('file'), (request, response) => {
 
     const amount = request.body.amount;
