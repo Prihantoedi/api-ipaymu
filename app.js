@@ -1,5 +1,5 @@
 import cors from 'cors';
-// import bodyParser from 'body-parser';
+import bodyParser from 'body-parser';
 import express from 'express';
 import dotenv from 'dotenv';
 import fetch from 'node-fetch';
