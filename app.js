@@ -14,21 +14,12 @@ const app = express();
 // const upload = multer({ dest: 'uploads/' });
 const storage= multer.memoryStorage(); // Use memoryStorage to deployment on Vercel
 const upload = multer({ storage: storage });
-// let allowedOrigins = ['http://localhost'];
 
-// app.use(cors({
-//     origin: function(origin, callback){
-//         if(!origin) return callback(null, true);
-//         if(allowedOrigins.indexOf(origin) === -1){
-//             let msg = 'The CORS policy for this site does not allow access from the specified origin. ';
-//             return callback(new Error(msg), false);
-//         }
 
-//         return callback(null, true);
-//     }
-// }));
-
-app.use(express.json());
+// app.use(express.json());
+app.use(cors());
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended: true}));
 
 const PORT = process.env.PORT;
 const apiKey = process.env.IPAYMU_SANDBOX_API_KEY;
@@ -36,18 +27,18 @@ const va = process.env.IPAYMU_SANDBOX_VA;
 
 const url = 'https://sandbox.ipaymu.com/api/v2/payment';
 
-app.listen(PORT, () => {
-    console.log('Server Listening on PORT: ', PORT);
-});
+// app.listen(PORT, () => {
+//     console.log('Server Listening on PORT: ', PORT);
+// });
 
-app.get('/', (request, response) => {
-    const res = {
-        status: 200,
-        message: 'Success'
-    };
+// app.get('/', (request, response) => {
+//     const res = {
+//         status: 200,
+//         message: 'Success'
+//     };
 
-    response.status(200).send(res);
-});
+//     response.status(200).send(res);
+// });
 
 app.post('/api/ipaymu/checkout', upload.single('file'), (request, response) => {
 
@@ -103,3 +94,5 @@ app.post('/api/ipaymu/checkout', upload.single('file'), (request, response) => {
     
     
 });
+
+export default app;
