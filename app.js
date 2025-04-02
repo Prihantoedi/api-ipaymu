@@ -58,7 +58,7 @@ app.post('/api/ipaymu/checkout', upload.single('file'), (request, response) => {
         'qty': [num_of_product],
         'price' : ['14000000'],
         'amount' : amount,
-        'returnUrl' : 'http://localhost/doku-payment/success.php',
+        'returnUrl' : 'http://localhost/doku-payment/public/success.php',
         'cancelUrl': 'http://localhost/doku-payment',
         'notifyUrl' : 'https://gandumbread.com/payment/ipaymu/notification.php',
         'referenceId' : '086irp',
